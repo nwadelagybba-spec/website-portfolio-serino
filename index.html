@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Abbygale Dawn Seriño - Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css?v=1" />
+  <style>
+    /* SIMPLE LOGIN STYLE */
+    #login-box { display:flex; flex-direction:column; gap:10px; width:320px; margin:60px auto; background:#a7bfeb; padding:20px; border-radius:10px; box-shadow:0 0 10px rgba(0,0,0,.1); }
+    #login-box input { padding:10px; border-radius:5px; border:1px solid #f2cfea; font-size:14px; }
+    #login-box button { padding:10px; border:0; background:#7a94fc; color:rgb(255, 243, 255); border-radius:5px; cursor:pointer; font-weight:600; }
+    #msg { color:red; font-size:13px; min-height:18px; }
+    #portfolio-content { display:none; }
+    /* keep small responsive fix for portfolio content when shown */
+    @media (max-width:600px){ #login-box{width:90%; margin:20px auto;} }
+  </style>
+</head>
+<body>
+
+  <!-- SIMPLE LOGIN FIRST -->
+  <div id="login-box">
+    <h3 style="margin:0 0 6px;">Login</h3>
+
+    <!-- use a form so Enter submits -->
+    <form id="login-form" onsubmit="return handleLogin(event)">
+      <input id="user" name="user" type="text" placeholder="Username" autocomplete="username" autofocus />
+      <input id="pass" name="pass" type="password" placeholder="Password" autocomplete="current-password" />
+      <button type="submit">Log in</button>
+    </form>
+
+    <p id="msg"></p>
+  </div>
+
+  <!-- EVERYTHING IN THIS DIV WILL ONLY SHOW AFTER LOGIN -->
+  <div id="portfolio-content">
+
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+      <h1>My Portfolio</h1>
+      <ul>
+        <li><a href="#home" class="active">Home</a></li>
+        <li><a href="#about">About Me</a></li>
+        <li><a href="#certificates">Certificates</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <button id="theme-toggle">🌙</button>
+    </nav>
+
+    <!-- Home Section -->
+    <section id="home" class="card home-container fade-in">
+      <div class="home-text">
+        <h3>Welcome! I'm</h3>
+        <h1 class="name">Abbygale Seriño</h1>
+        <h2 class="role">An aspiring <span class="highlight">IT Specialist</span></h2>
+        <p>
+          I’m a Bachelor of Science in Information Technology student passionate about 
+          building solutions through technology. With experience in programming, system 
+          support, and front-end development, I enjoy turning ideas into practical, 
+          efficient applications.
+        </p>
+      </div>
+
+      <div class="home-image">
+        <img src="Untitled design (8).png" alt="Abbygale Dawn Serino" />
+      </div>
+    </section>
+
+    <!-- About Me Section -->
+    <section id="about" class="card fade-in about-section">
+      <h2>About Me</h2>
+      <div class="about-content">
+        <div class="about-image">
+          <img src="89709dec-43d2-4e2c-9e8a-8b6e881cb61b.png" alt="About Me Image" />
+        </div>
+        <div class="about-text">
+          <p>
+            Hello! My name is <strong>Abbygale Dawn P. Seriño</strong>. I’m an IT Specialist with a passion for technology and problem-solving.
+          </p>
+          <button id="edit-btn">Edit</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Certificates Section -->
+    <section id="certificates" class="card fade-in">
+      <h2>Certificates</h2>
+      <div class="certificates-grid">
+        <div class="certificate"><img src="Html.png" class="cert-img" /><p>HTML</p></div>
+        <div class="certificate"><img src="CSS.png" class="cert-img" /><p>CSS</p></div>
+        <div class="certificate"><img src="javascript.png" class="cert-img" /><p>JavaScript</p></div>
+        <div class="certificate"><img src="SQL.png" class="cert-img" /><p>SQL</p></div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="card fade-in">
+      <h2>Contact</h2>
+      <div class="contact-container">
+        <div class="contact-item"><img src="email.png" class="contact-icon" /> <span>Email: nwadelagybba@gmail.com</span></div>
+        <div class="contact-item"><img src="phone.png" class="contact-icon" /> <span>Phone: 09914909708</span></div>
+        <div class="contact-item"><img src="facebook.jpg" class="contact-icon" /> <span>Facebook: <a href="https://www.facebook.com/share/17ZRgGVksu/">facebook.com/Abbygale</a></span></div>
+      </div>
+    </section>
+
+  </div> <!-- END portfolio-content -->
+
+<script>
+  // Handle login when form submitted (Enter or button)
+  function handleLogin(e){
+    e.preventDefault();
+    const u = document.getElementById('user').value.trim();
+    const p = document.getElementById('pass').value;
+    const msg = document.getElementById('msg');
+
+    if (u === "abby" && p === "serino") {
+      // hide login, show portfolio
+      document.getElementById('login-box').style.display = 'none';
+      document.getElementById('portfolio-content').style.display = 'block';
+      msg.textContent = '';
+      return false;
+    } else {
+      msg.textContent = "Wrong username or password";
+      return false;
+    }
+  }
+
+  // Quick check: if you later want "remember me" using localStorage:
+  (function checkRemember(){
+    const saved = localStorage.getItem('loggedAs');
+    if(saved === 'abby'){ 
+      document.getElementById('login-box').style.display = 'none';
+      document.getElementById('portfolio-content').style.display = 'block';
+    }
+  })();
+</script>
+
+<script src="script.js"></script>
+</body>
+</html>
